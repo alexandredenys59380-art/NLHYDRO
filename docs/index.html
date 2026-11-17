@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Journal de veille des actualités concernant EDF Hydro et l'hydroélectricité.">
+<title>EDF Hydro — Le Journal</title>
+<style>
+:root{--navy:#102b40;--blue:#1e5975;--ink:#18232d;--muted:#667582;--line:#e3e8ec;--paper:#f4f6f7;--white:#fff;--accent:#d49b42}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.55 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Arial,sans-serif}
+a{color:inherit}.top{background:var(--navy);color:#fff}.top-inner{max-width:1180px;margin:auto;padding:26px 22px 20px}
+.brand{font-size:12px;letter-spacing:.22em;font-weight:800;color:#c9d8e2}.masthead{display:flex;align-items:end;justify-content:space-between;gap:20px}
+h1{font-family:Georgia,serif;font-size:clamp(34px,5vw,58px);line-height:1.03;margin:12px 0 8px;font-weight:500}
+.tagline{color:#c9d8e2;margin:0}.edition{font-size:12px;color:#c9d8e2;text-align:right}
+.nav{border-top:1px solid #ffffff25;margin-top:22px;display:flex;gap:24px;flex-wrap:wrap;padding-top:13px;font-size:12px;font-weight:700;letter-spacing:.08em;color:#e5edf2}
+main{max-width:1180px;margin:30px auto;padding:0 22px}.toolbar{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+input,select{background:#fff;border:1px solid var(--line);border-radius:5px;padding:12px 14px;font:inherit;color:var(--ink)}
+input{flex:1;min-width:220px}select{min-width:190px}
+.section-label{font-size:11px;letter-spacing:.16em;font-weight:800;color:var(--blue);margin:0 0 14px}
+.lead{display:grid;grid-template-columns:1.4fr 1fr;background:#fff;border:1px solid var(--line);margin-bottom:30px}
+.lead-visual{min-height:250px;background:linear-gradient(135deg,#173c53,#3b7890);display:flex;align-items:end;padding:25px;color:#fff}
+.lead-visual span{font:500 28px/1.15 Georgia,serif;max-width:440px}
+.lead-copy{padding:28px;display:flex;flex-direction:column;justify-content:center}
+.kicker{font-size:11px;color:var(--blue);font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.lead-copy h2{font:500 28px/1.2 Georgia,serif;margin:10px 0}
+.lead-copy p{color:var(--muted);margin:0 0 15px}.lead-copy a,.article a{color:var(--blue);font-weight:700;text-decoration:none}.lead-copy a:hover,.article a:hover{text-decoration:underline}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.article{background:#fff;border:1px solid var(--line);padding:20px;min-height:220px;display:flex;flex-direction:column}
+.article .meta{font-size:11px;color:var(--muted);margin:9px 0 12px}
+.article h3{font:500 21px/1.25 Georgia,serif;margin:0 0 10px}
+.article p{font-size:14px;color:#52616c;margin:0 0 18px}
+.article .read{margin-top:auto;font-size:13px}
+.empty{background:#fff;border:1px dashed #cbd4da;padding:35px;text-align:center;color:var(--muted);grid-column:1/-1}
+footer{max-width:1180px;margin:40px auto 0;padding:20px 22px 35px;color:var(--muted);font-size:12px;border-top:1px solid var(--line)}
+.status{font-size:12px;color:var(--muted);margin:0 0 15px}
+@media(max-width:800px){.lead{grid-template-columns:1fr}.lead-visual{min-height:180px}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.edition{display:none}}
+@media(max-width:540px){.grid{grid-template-columns:1fr}.top-inner{padding-top:20px}.nav{gap:13px}}
+</style>
+</head>
+<body>
+<header class="top">
+ <div class="top-inner">
+  <div class="masthead">
+   <div><div class="brand">LE JOURNAL DE L'HYDROÉLECTRICITÉ</div><h1>EDF Hydro<br>en revue.</h1><p class="tagline">L'actualité des projets, des équipes et de l'écosystème hydroélectrique.</p></div>
+   <div class="edition">VEILLE SECTORIELLE<br><span id="updated">Mise à jour : chargement…</span></div>
+  </div>
+  <nav class="nav"><span>ACTUALITÉS</span><span>PROJETS</span><span>INVESTISSEMENTS</span><span>TECHNOLOGIES</span><span>ENVIRONNEMENT</span></nav>
+ </div>
+</header>
+<main>
+ <div class="toolbar">
+  <input id="search" type="search" placeholder="Rechercher un sujet, un barrage, une technologie…">
+  <select id="category"><option value="">Toutes les rubriques</option></select>
+  <select id="period"><option value="0">Toutes les dates</option><option value="7">7 derniers jours</option><option value="30">30 derniers jours</option><option value="90">3 derniers mois</option></select>
+ </div>
+ <p class="section-label">À LA UNE</p>
+ <section id="lead" class="lead"><div class="lead-visual"><span>La veille de référence sur EDF Hydro</span></div><div class="lead-copy"><div class="kicker">Votre journal de veille</div><h2>Les dernières informations, réunies au même endroit.</h2><p>Les publications sont collectées automatiquement à partir de flux d'actualité et classées par thématique.</p></div></section>
+ <p class="section-label">LES DERNIÈRES PUBLICATIONS</p>
+ <p id="status" class="status">Chargement des publications…</p>
+ <section id="articles" class="grid"></section>
+</main>
+<footer>EDF Hydro — Journal de veille indépendant. Les articles restent la propriété de leurs éditeurs respectifs. Chaque fiche renvoie vers sa source originale. La collecte dépend de la disponibilité et de l'indexation des flux publics.</footer>
+<script>
+const DATA_URL = './articles.json';
+let allArticles = [];
+const $ = id => document.getElementById(id);
+function dateLabel(value){if(!value)return 'Date non précisée';const d=new Date(value);return isNaN(d)?'Date non précisée':new Intl.DateTimeFormat('fr-FR',{dateStyle:'medium'}).format(d)}
+function safe(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function render(){
+ const term=$('search').value.toLowerCase().trim(), cat=$('category').value, days=Number($('period').value);
+ const cutoff=days?Date.now()-days*86400000:0;
+ const list=allArticles.filter(a=>{
+  const text=[a.title,a.summary,a.source,a.category].join(' ').toLowerCase();
+  const d=a.published?new Date(a.published).getTime():0;
+  return (!term||text.includes(term))&&(!cat||a.category===cat)&&(!cutoff||!d||d>=cutoff);
+ });
+ $('status').textContent=`${list.length} publication(s) affichée(s) sur ${allArticles.length} collectée(s).`;
+ const lead=list[0];
+ if(lead){
+  $('lead').innerHTML=`<div class="lead-visual"><span>${safe(lead.title)}</span></div><div class="lead-copy"><div class="kicker">${safe(lead.category||'À la une')}</div><h2>${safe(lead.title)}</h2><p>${safe((lead.summary||'').slice(0,360))}</p><div class="meta">${safe(lead.source)} · ${dateLabel(lead.published)}</div><a href="${safe(lead.url)}" target="_blank" rel="noopener">Lire la publication originale ↗</a></div>`;
+ }
+ $('articles').innerHTML=list.length?list.map(a=>`<article class="article"><div class="kicker">${safe(a.category||'Actualité')}</div><div class="meta">${safe(a.source)} · ${dateLabel(a.published)}</div><h3>${safe(a.title)}</h3><p>${safe((a.summary||'').slice(0,330))}${(a.summary||'').length>330?'…':''}</p><div class="read"><a href="${safe(a.url)}" target="_blank" rel="noopener">Lire l'article ↗</a></div></article>`).join(''):'<div class="empty">Aucune publication ne correspond à ces filtres. Essayez un autre mot-clé ou une autre période.</div>';
+}
+async function start(){
+ try{
+  const res=await fetch(DATA_URL+'?v='+Date.now());
+  if(!res.ok)throw new Error('Fichier articles.json introuvable');
+  const data=await res.json();allArticles=Array.isArray(data.articles)?data.articles:[];
+  const cats=[...new Set(allArticles.map(a=>a.category).filter(Boolean))].sort();
+  cats.forEach(c=>{const o=document.createElement('option');o.value=c;o.textContent=c;$('category').appendChild(o)});
+  $('updated').textContent='Mise à jour : '+(data.generated_at?dateLabel(data.generated_at):'non renseignée');
+  render();
+ }catch(e){$('status').textContent='Impossible de charger les publications. Vérifiez que le workflow de collecte a été exécuté.';$('articles').innerHTML='<div class="empty">Les données ne sont pas encore disponibles. Lancez le workflow GitHub Actions « Collecte du journal EDF Hydro ».</div>'}
+}
+['search','category','period'].forEach(id=>$(id).addEventListener(id==='search'?'input':'change',render));
+start();
+</script>
+</body>
+</html>
